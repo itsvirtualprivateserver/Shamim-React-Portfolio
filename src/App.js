@@ -1,35 +1,50 @@
-import React, { Suspense, lazy } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Main from './layouts/Main'; // fallback for lazy pages
-import './static/css/main.scss'; // All of our styles
+import React, { useState, useEffect } from "react";
+import Preloader from "../src/components/Pre";
+import Navbar from "./components/Navbar";
+import Home from "./components/Home/Home";
+import About from "./components/About/About";
+import Projects from "./components/Projects/Projects";
+import Footer from "./components/Footer";
+import Resume from "./components/Resume/ResumeNew";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate
+} from "react-router-dom";
+import ScrollToTop from "./components/ScrollToTop";
+import "./style.css";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-const { PUBLIC_URL } = process.env;
+function App() {
+  const [load, upadateLoad] = useState(true);
 
-// Every route - we lazy load so that each page can be chunked
-// NOTE that some of these chunks are very small. We should optimize
-// which pages are lazy loaded in the future.
-const About = lazy(() => import('./pages/About'));
-const Contact = lazy(() => import('./pages/Contact'));
-const Index = lazy(() => import('./pages/Index'));
-const NotFound = lazy(() => import('./pages/NotFound'));
-const Projects = lazy(() => import('./pages/Projects'));
-const Resume = lazy(() => import('./pages/Resume'));
-const Stats = lazy(() => import('./pages/Stats'));
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      upadateLoad(false);
+    }, 1200);
 
-const App = () => (
-  <BrowserRouter basename={PUBLIC_URL}>
-    <Suspense fallback={<Main />}>
-      <Routes>
-        <Route path="/" element={<Index />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/projects" element={<Projects />} />
-        <Route path="/stats" element={<Stats />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/resume" element={<Resume />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </Suspense>
-  </BrowserRouter>
-);
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <Router>
+      <Preloader load={load} />
+      <div className="App" id={load ? "no-scroll" : "scroll"}>
+        <Navbar />
+        <ScrollToTop />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/project" element={<Projects />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/resume" element={<Resume />} />
+          <Route path="*" element={<Navigate to="/"/>} />
+        </Routes>
+        <Footer />
+      </div>
+    </Router>
+  );
+}
 
 export default App;
