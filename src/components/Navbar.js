@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { CgGitFork } from "react-icons/cg";
 // import { ImBlog } from "react-icons/im";
 import {
-  AiFillStar,
+  // AiFillStar,
   AiOutlineHome,
   AiOutlineFundProjectionScreen,
   AiOutlineUser,
@@ -36,6 +36,7 @@ function NavBar() {
       fixed="top"
       expand="md"
       className={navColour ? "sticky" : "navbar"}
+      style={{fontFamily:"Cookie"}}
     >
       <Container>
         <Navbar.Brand href="/" className="d-flex">
@@ -109,7 +110,7 @@ function NavBar() {
                 className="fork-btn-inner"
               >
                 <CgGitFork style={{ fontSize: "1.2em" }} />{" "}
-                <AiFillStar style={{ fontSize: "1.1em" }} />
+                {/* <AiFillStar style={{ fontSize: "1.1em" }} /> */}
               </Button>
             </Nav.Item>
           </Nav>
