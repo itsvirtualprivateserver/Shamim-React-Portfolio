@@ -22,19 +22,15 @@ function Home2() {
               I fell in love with programming and I have at least learnt
               something, I think… 🤷‍♂️
               <br />
-              <br />I am fluent in classics like
+              <br />I am fluent in
               <i>
-                <b className="purple"> C++ & Javascript. </b>
+                <b className="purple"> C, C++ & Javascript. </b>
               </i>
               <br />
               <br />
               My field of Interest's are building new &nbsp;
               <i>
-                <b className="purple">Web Technologies and Products </b> and
-                also in areas related to{" "}
-                <b className="purple">
-                  Blockchain.
-                </b>
+                <b className="purple">Web Technologies and Products. </b>
               </i>
               <br />
               <br />
@@ -60,7 +56,7 @@ function Home2() {
         </Row>
         <Row>
           <Col md={12} className="home-about-social">
-            <h1>FIND ME ON</h1>
+            <h1 className="cr">FIND ME ON</h1>
             <p>
               Feel free to <span className="purple">connect </span>with me
             </p>

@@ -1,5 +1,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Cookie&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Redressed&display=swap');
 html {
   --section-background-color: linear-gradient(
     to bottom left,
@@ -15,7 +17,9 @@ html {
 
   --imp-text-color: #c770f0;
 }
-
+.cr{
+  font-family: "Redressed", cursive;
+}
 .purple {
   color: var(--imp-text-color) !important;
 }
