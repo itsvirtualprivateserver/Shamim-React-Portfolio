@@ -7,7 +7,11 @@ function Type2() {
       options={{
         strings: [
           "Shamim Imran",
-          "شميم عمران",
+          "شميم امران",
+          "সামিম ইমৰাণ",
+          "ШАМИМ ИМРАН",
+          "沙米姆·伊姆兰"
+
         ],
         autoStart: true,
         loop: true,
