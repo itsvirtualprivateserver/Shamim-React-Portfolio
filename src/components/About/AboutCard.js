@@ -1,6 +1,7 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
 import { ImPointRight } from "react-icons/im";
+import AgeCounter from "./Age";
 
 function AboutCard() {
   return (
@@ -15,6 +16,7 @@ function AboutCard() {
             <br />
             I have completed MCA (Master of Computer Application) at Royal Global University (Guwahati).
             <br />
+          <AgeCounter/>
             <br />
             Apart from coding, some other activities that I love to do!
           </p>
