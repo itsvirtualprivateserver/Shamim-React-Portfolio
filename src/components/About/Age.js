@@ -6,6 +6,7 @@ function AgeCounter() {
   useEffect(() => {
     const intervalId = setInterval(() => {
       const today = new Date();
+      today.toLocaleString("en-US", {timeZone: "Asia/Kolkata"}); // Set the time zone to IST
 
       const birthday = new Date('1999-11-10'); // Example birthday, format: yyyy-mm-dd
 
@@ -53,9 +54,8 @@ function AgeCounter() {
 
   return (
     <div>
-      <br></br>
-      <h3>My age is:</h3>
-      <p>{age.years} Years, {age.months} Months, {age.days} Days, {age.hours} Hours, {age.minutes} Minutes, and {age.seconds} Seconds</p>
+      <h1>Your age is:</h1>
+      <p>{age.years} years, {age.months} months, {age.days} days, {age.hours} hours, {age.minutes} minutes, and {age.seconds} seconds old</p>
     </div>
   );
 }
