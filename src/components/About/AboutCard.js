@@ -16,6 +16,7 @@ function AboutCard() {
             <br />
             I have completed MCA (Master of Computer Application) at Royal Global University (Guwahati).
             <br />
+            <br/>
           <AgeCounter/>
             <br />
             Apart from coding, some other activities that I love to do!

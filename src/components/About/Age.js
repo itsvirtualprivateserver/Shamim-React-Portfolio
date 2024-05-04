@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 function AgeCounter() {
-  const [age, setAge] = useState({ years: 0, months: 0, days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [age, setAge] = useState({ years: 0, months: 0, days: 0, hours: 0, minutes: 0, seconds: 0, milliseconds: 0 });
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -16,6 +16,7 @@ function AgeCounter() {
       let ageHour = today.getHours() - birthday.getHours();
       let ageMinute = today.getMinutes() - birthday.getMinutes();
       let ageSecond = today.getSeconds() - birthday.getSeconds();
+      let ageMillisecond = today.getMilliseconds() - birthday.getMilliseconds();
 
       if (ageMonth < 0 || (ageMonth === 0 && today.getDate() < birthday.getDate())) {
         ageYear--;
@@ -38,6 +39,10 @@ function AgeCounter() {
         ageMinute--;
         ageSecond += 60;
       }
+      if (ageMillisecond < 0) {
+        ageSecond--;
+        ageMillisecond += 1000;
+      }
 
       setAge({
         years: ageYear,
@@ -45,17 +50,18 @@ function AgeCounter() {
         days: ageDay,
         hours: ageHour,
         minutes: ageMinute,
-        seconds: ageSecond
+        seconds: ageSecond,
+        milliseconds: ageMillisecond
       });
-    }, 1000);
+    }, 1); // Interval set to 1 millisecond
 
     return () => clearInterval(intervalId);
   }, []);
 
   return (
     <div>
-      <h1>Your age is:</h1>
-      <p>{age.years} years, {age.months} months, {age.days} days, {age.hours} hours, {age.minutes} minutes, and {age.seconds} seconds old</p>
+      <h1 className='font'>My age is -</h1>
+      <p className='font'>{age.years} years, {age.months} months, {age.days} days, {age.hours} hours, {age.minutes} minutes, {age.seconds} seconds, and {age.milliseconds} milliseconds</p>
     </div>
   );
 }
