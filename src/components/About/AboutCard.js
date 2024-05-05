@@ -2,6 +2,8 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import { ImPointRight } from "react-icons/im";
 import AgeCounter from "./Age";
+import Component1 from "./AboutScramble";
+import Component2 from "./AboutScramble1";
 
 function AboutCard() {
   return (
@@ -9,13 +11,8 @@ function AboutCard() {
       <Card.Body>
         <blockquote className="blockquote mb-0">
           <p style={{ textAlign: "justify" }}>
-            Hi Everyone, I am <span className="purple">Shamim Imran </span>
-            from <span className="purple"> Guwahati, Assam, India.</span>
-            <br />
-            I am currently employed as a software developer at XEOTEC E-SERVICES.
-            <br />
-            I have completed MCA (Master of Computer Application) at Royal Global University (Guwahati).
-            <br />
+          <Component1/>
+            <br/>
             <br/>
           <AgeCounter/>
             <br />
@@ -23,13 +20,7 @@ function AboutCard() {
           </p>
           <ul>
             <li className="about-activity">
-              <ImPointRight /> Playing Games
-            </li>
-            <li className="about-activity">
-              <ImPointRight /> Cooking
-            </li>
-            <li className="about-activity">
-              <ImPointRight /> Travelling
+               <Component2/>
             </li>
           </ul>
 

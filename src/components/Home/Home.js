@@ -5,7 +5,7 @@ import Particle from "../Particle";
 import Home2 from "./Home2";
 import Type from "./Type";
 import "./Home.css"
-import Type2 from "./Type2";
+import Component from "./Scramble";
 
 function Home() {
   return (
@@ -24,7 +24,7 @@ function Home() {
 
               <h1 className="heading-name">
                 <span className="im">I'm ⤵</span>
-                <span className="main-name"> <Type2/></span>
+                <span className="main-name"> <Component/></span>
               </h1>
 
               <div className="type1" style={{ padding: 50, textAlign: "left" }}>
