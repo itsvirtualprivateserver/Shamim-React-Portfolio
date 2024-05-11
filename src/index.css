@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Protest+Revolution&display=swap');
+
 body {
   margin: 0;
   font-family: "Raleway", serif !important;
@@ -10,5 +12,13 @@ body {
 
 .font{
   font-family: "Bungee", sans-serif;
-  color: teal;
+  color: rgb(72, 112, 243);
+}
+.font01{
+  font-size: small;
+  font-family: "Bungee", sans-serif;
+  color: rgb(72, 112, 243);
+}
+.home-about-description{
+  font-family: "IBM Plex Mono", monospace;
 }

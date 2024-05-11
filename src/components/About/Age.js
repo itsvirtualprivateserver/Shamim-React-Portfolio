@@ -61,7 +61,7 @@ function AgeCounter() {
   return (
     <div>
       <h1 className='font'>My age is -</h1>
-      <p className='font'>{age.years} years, {age.months} months, {age.days} days, {age.hours} hours, {age.minutes} minutes, {age.seconds} seconds, and {age.milliseconds} milliseconds</p>
+      <p className='font01'>{age.years} years, {age.months} months, {age.days} days, {age.hours} hours, {age.minutes} minutes, {age.seconds} seconds, and {age.milliseconds} milliseconds</p>
     </div>
   );
 }

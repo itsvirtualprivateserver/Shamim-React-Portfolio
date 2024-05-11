@@ -8,7 +8,7 @@ const Component = () => {
   // Hook returns a ref
   const { ref, setText } = useScramble({
     text: names[currentNameIndex],
-    speed: 0.6,
+    speed: 0.5,
     tick: 1,
     step: 1,
     scramble: 4,

@@ -9,7 +9,7 @@ const Component2 = () => {
   // Hook returns a ref
   const { ref, setText } = useScramble({
     text: names[currentNameIndex],
-    speed: 0.6,
+    speed: 0.3,
     tick: 1,
     step: 1,
     scramble: 4,
@@ -28,9 +28,9 @@ const Component2 = () => {
 
   // Apply the ref to a node
   return (
-    <div style={{ display: 'flex', alignItems: 'center' }}>
+    <div style={{ display: 'flex', alignItems: 'center' , fontFamily:"IBM Plex Mono" }}>
       <ImPointRight/> <span>&nbsp;&nbsp; --- &nbsp;&nbsp;</span>
-      <h1  ref={ref} />
+      <h3  ref={ref} />
     </div>
   );
   

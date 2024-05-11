@@ -7,6 +7,7 @@ import text2qr from "../../Assets/Projects/text-2-qr.png";
 import portfolio from "../../Assets/Projects/portfolio.png";
 import bgremove from "../../Assets/Projects/bg-remover.png";
 import gemini from "../../Assets/Projects/gemini-clone.png";
+import RProject from "./RProject";
 // import bitsOfCode from "../../Assets/Projects/blog.png";
 
 function Projects() {
@@ -18,7 +19,7 @@ function Projects() {
           My Recent <strong className="purple">Works </strong>
         </h1>
         <p style={{ color: "white" }}>
-          Here are a few projects I've worked on recently.
+          <RProject/>
         </p>
         <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
           <Col md={4} className="project-card">
@@ -37,7 +38,7 @@ function Projects() {
               imgPath={portfolio}
               isBlog={false}
               title="Portfolio"
-              description="A portfolio website is a unique way to showcase your work and let others know about yourself. It is like an evergreen platform for your projects, case studies, and information about you. It is one of the best ways to express your personality, experience, and capabilities"
+              description="A portfolio website is a unique way to showcase your work and let others know about yourself."
               ghLink="https://github.com/iamshamimimran/portfolio2.0"
               demoLink="https://shamimimran.netlify.app/"              
             />
@@ -59,7 +60,7 @@ function Projects() {
               imgPath={gemini}
               isBlog={false}
               title="Gemini Clone"
-              description="Using 'Natural Launguage Processing' for the detection of suicide-related posts and user's suicide ideation in cyberspace  and thus helping in sucide prevention."
+              description="Using 'Natural Launguage Processing' for the detection of suicide-related posts ...."
               ghLink="https://github.com/iamshamimimran/Gemini-Clone"
               demoLink="https://gemini-clone-01.vercel.app/"
             />

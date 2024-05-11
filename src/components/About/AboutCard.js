@@ -1,6 +1,6 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
-import { ImPointRight } from "react-icons/im";
+// import { ImPointRight } from "react-icons/im";
 import AgeCounter from "./Age";
 import Component1 from "./AboutScramble";
 import Component2 from "./AboutScramble1";
@@ -10,7 +10,7 @@ function AboutCard() {
     <Card className="quote-card-view">
       <Card.Body>
         <blockquote className="blockquote mb-0">
-          <p style={{ textAlign: "justify" }}>
+          <p style={{ textAlign: "justify" , fontFamily: "IBM Plex Mono" , fontSize:"large" }}>
           <Component1/>
             <br/>
             <br/>

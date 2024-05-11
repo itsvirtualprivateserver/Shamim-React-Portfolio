@@ -36,7 +36,7 @@ function NavBar() {
       fixed="top"
       expand="md"
       className={navColour ? "sticky" : "navbar"}
-      style={{fontFamily:"Cookie"}}
+      style={{fontFamily:"IBM Plex Mono"}}
     >
       <Container>
         <Navbar.Brand href="/" className="d-flex">
