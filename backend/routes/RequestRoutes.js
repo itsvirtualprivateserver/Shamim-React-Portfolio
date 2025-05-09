@@ -3,7 +3,7 @@ const router = express.Router();
 const Request = require("../models/Request"); // singular name for the model
 
 // Create Request
-router.post("/request", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const { name, email, phone, subject, message } = req.body;
     const newRequest = await Request.create({
@@ -20,7 +20,7 @@ router.post("/request", async (req, res) => {
 });
 
 // Get all Requests
-router.get("/", async (req, res) => {
+router.get("/get-all-req", async (req, res) => {
   try {
     const requests = await Request.find();
     res.json(requests);

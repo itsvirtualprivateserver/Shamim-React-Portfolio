@@ -8,17 +8,20 @@ dotenv.config();
 connectDB();
 
 const app = express();
-app.use(cors());
-app.use(
-  cors({
-    origin: "https://shamimimran.vercel.app/",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-  })
-);
+
+// CORS setup
+const corsOptions = {
+  origin: ["http://localhost:3000", "https://shamimimran.vercel.app"],
+  credentials: true,
+};
+app.use(cors(corsOptions));
+
+// Middleware
 app.use(express.json());
 
-app.use("/api", requestRoutes);
+// Routes
+app.use("/api/requests", requestRoutes);
 
+// Start server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

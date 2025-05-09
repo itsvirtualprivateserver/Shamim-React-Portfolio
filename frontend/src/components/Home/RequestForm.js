@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import "./Home.css";
+import axios from "axios";
+
 function RequestForm() {
   const [formData, setFormData] = useState({
     name: "",
@@ -16,21 +18,24 @@ function RequestForm() {
       [e.target.name]: e.target.value,
     }));
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/api/request", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-      const data = await response.json();
+      const response = await axios.post(
+        "http://localhost:5000/api/requests",
+        formData
+      );
+
       alert("Request submitted successfully!");
-      console.log(data);
-      setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
+      console.log(response.data);
+
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+      });
     } catch (err) {
       alert("Error submitting request.");
       console.error(err);
