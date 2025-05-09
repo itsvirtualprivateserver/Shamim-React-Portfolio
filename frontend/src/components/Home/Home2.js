@@ -8,6 +8,7 @@ import {
   AiFillInstagram,
 } from "react-icons/ai";
 import { FaLinkedinIn } from "react-icons/fa";
+import RequestForm from "./RequestForm";
 
 function Home2() {
   return (
@@ -50,10 +51,16 @@ function Home2() {
           </Col>
           <Col md={4} className="myAvtar">
             <Tilt>
-              <img src={myImg} className="img-fluid" alt="avatar" style={{ width: '200px', height: '200px' }} />
+              <img
+                src={myImg}
+                className="img-fluid"
+                alt="avatar"
+                style={{ width: "200px", height: "200px" }}
+              />
             </Tilt>
           </Col>
         </Row>
+        <RequestForm />
         <Row>
           <Col md={12} className="home-about-social">
             <h1 className="cr">FIND ME ON</h1>
