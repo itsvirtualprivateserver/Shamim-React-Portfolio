@@ -10,12 +10,29 @@ import {
   BrowserRouter as Router,
   Route,
   Routes,
-  Navigate
+  useLocation,
+  Navigate,
 } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 import "./style.css";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import LoginPage from "./components/Admin/LoginPage";
+import Dashboard from "./components/Admin/Dashboard";
+import ProtectedRoute from "./components/Admin/ProtectedRoute";
+function Layout({ children }) {
+  const location = useLocation();
+  const isAdminRoute = location.pathname.startsWith("/admin");
+
+  return (
+    <>
+      {!isAdminRoute && <Navbar />}
+      {!isAdminRoute && <ScrollToTop />}
+      {children}
+      {!isAdminRoute && <Footer />}
+    </>
+  );
+}
 
 function App() {
   const [load, upadateLoad] = useState(true);
@@ -32,16 +49,24 @@ function App() {
     <Router>
       <Preloader load={load} />
       <div className="App" id={load ? "no-scroll" : "scroll"}>
-        <Navbar />
-        <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/project" element={<Projects />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/resume" element={<Resume />} />
-          <Route path="*" element={<Navigate to="/"/>} />
-        </Routes>
-        <Footer />
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/project" element={<Projects />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/resume" element={<Resume />} />
+            <Route path="/requests" element={<LoginPage />} />
+            <Route
+              path="/admin/dashboard"
+              element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </Layout>
       </div>
     </Router>
   );

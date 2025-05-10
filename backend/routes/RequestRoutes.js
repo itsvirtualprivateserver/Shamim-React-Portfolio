@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const Request = require("../models/Request"); // singular name for the model
-
+const requestController = require("../controller/requestController");
+const auth = require("../middlewares/auth");
 // Create Request
 router.post("/create", async (req, res) => {
   try {
@@ -19,13 +20,6 @@ router.post("/create", async (req, res) => {
   }
 });
 // Get all Requests
-router.get("/get-all-req", async (req, res) => {
-  try {
-    const requests = await Request.find();
-    res.json(requests);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
+router.get("/get-all-req", auth, requestController.getAllRequests);
 
 module.exports = router;
