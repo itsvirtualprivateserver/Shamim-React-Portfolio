@@ -15,7 +15,12 @@ const app = express();
 
 // CORS setup
 const corsOptions = {
-  origin: ["http://localhost:3000", "https://shamimimran.vercel.app"],
+  origin: [
+    "http://localhost:3000",
+    "https://shamimimran.vercel.app",
+    "https://portfolio-backend-njcj.onrender.com",
+    "https://shamimimran.vercel.app/",
+  ],
   credentials: true,
 };
 app.use(cors(corsOptions));
