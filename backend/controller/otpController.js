@@ -21,17 +21,15 @@ const sendOtp = async (req, res) => {
 
   // Configure the transporter
   const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port: process.env.SMTP_PORT,
-    secure: process.env.SMTP_SECURE === "true",
+    service: "gmail",
     auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
+      user: process.env.MY_EMAIL,
+      pass: process.env.MY_EMAIL_PASSWORD,
     },
   });
 
   const mailOptions = {
-    from: `"verify you are not a robot" <${process.env.SMTP_USER}>`,
+    from: `"verify you are not a robot" <${process.env.MY_EMAIL}>`,
     to: email,
     subject: "Let's verify your email address",
     html: `
