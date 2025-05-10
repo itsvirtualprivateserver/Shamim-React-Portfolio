@@ -29,10 +29,86 @@ const sendOtp = async (req, res) => {
   });
 
   const mailOptions = {
-    from: `"Portfolio Request" <${process.env.MY_EMAIL}>`,
+    from: `"Portfolio Verification" <${process.env.MY_EMAIL}>`,
     to: email,
-    subject: "Your OTP Code",
-    text: `Your OTP is ${otp}. It is valid for 10 minutes.`,
+    subject: "Let's verify your email address",
+    html: `
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <style>
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                line-height: 1.6;
+                color: #333;
+                max-width: 600px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+            .header {
+                text-align: center;
+                padding: 20px 0;
+                background-color: #4a6fa5;
+                color: white;
+                border-radius: 8px 8px 0 0;
+            }
+            .content {
+                padding: 30px;
+                background-color: #f9f9f9;
+                border-radius: 0 0 8px 8px;
+                border: 1px solid #e1e1e1;
+                border-top: none;
+            }
+            .otp-code {
+                font-size: 28px;
+                letter-spacing: 5px;
+                text-align: center;
+                margin: 25px 0;
+                padding: 15px;
+                background-color: #e8f0fe;
+                color: #1a73e8;
+                border-radius: 5px;
+                font-weight: bold;
+            }
+            .footer {
+                margin-top: 30px;
+                font-size: 12px;
+                color: #777;
+                text-align: center;
+            }
+            .button {
+                display: inline-block;
+                padding: 10px 20px;
+                background-color: #4a6fa5;
+                color: white;
+                text-decoration: none;
+                border-radius: 5px;
+                margin-top: 15px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <h2>Email Verification</h2>
+        </div>
+        <div class="content">
+            <p>Hello,</p>
+            <p>Thank you for reaching out through my portfolio website. Please use the following One-Time Password (OTP) to verify your email address:</p>
+            
+            <div class="otp-code">${otp}</div>
+            
+            <p>This code is valid for <strong>10 minutes</strong>. If you didn't request this code, please ignore this email.</p>
+            
+            <p>Best regards,<br>${process.env.MY_NAME || "Portfolio Owner"}</p>
+            
+            <div class="footer">
+                <p>This is an automated message. Please do not reply directly to this email.</p>
+            </div>
+        </div>
+    </body>
+    </html>
+    `,
+    text: `Your OTP is ${otp}. It is valid for 10 minutes. If you didn't request this, please ignore this email.`,
   };
 
   try {
