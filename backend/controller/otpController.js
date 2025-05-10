@@ -29,7 +29,7 @@ const sendOtp = async (req, res) => {
   });
 
   const mailOptions = {
-    from: `"Portfolio Verification" <${process.env.MY_EMAIL}>`,
+    from: `"verify you are not a robot" <${process.env.MY_EMAIL}>`,
     to: email,
     subject: "Let's verify your email address",
     html: `

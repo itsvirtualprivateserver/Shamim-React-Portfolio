@@ -19,7 +19,6 @@ function RequestForm() {
     subject: "",
     message: "",
   });
-
   const [otpSent, setOtpSent] = useState(false);
   const [otp, setOtp] = useState("");
   const [verified, setVerified] = useState(false);
@@ -85,7 +84,7 @@ function RequestForm() {
 
     try {
       await axios.post(
-        "https://portfolio-backend-njcj.onrender.com/api/requests",
+        "https://portfolio-backend-njcj.onrender.com/api/requests/create",
         formData
       );
       alert("Request submitted successfully!");
