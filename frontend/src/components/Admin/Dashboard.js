@@ -16,7 +16,7 @@ const Dashboard = () => {
     try {
       const token = sessionStorage.getItem("authToken");
       const response = await axios.get(
-        "https://portfolio-backend-njcj.onrender.com/api/requests/get-all-req",
+        `${process.env.REACT_APP_API_BASE_URL}/api/requests/get-all-req`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

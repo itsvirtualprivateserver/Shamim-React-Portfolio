@@ -5,11 +5,60 @@ import {
   Container,
   Row,
   Col,
-  Alert,
+  Alert as BootstrapAlert,
   Spinner,
 } from "react-bootstrap";
 import axios from "axios";
 import "./Home.css";
+
+// Custom Alert Component
+const CustomAlert = ({ variant, message, onClose }) => {
+  const colors = {
+    success: "#28a745",
+    danger: "#dc3545",
+    info: "#17a2b8",
+    warning: "#ffc107",
+  };
+
+  return (
+    <div
+      style={{
+        position: "fixed",
+        top: "20px",
+        right: "20px",
+        zIndex: 9999,
+        minWidth: "300px",
+        maxWidth: "400px",
+      }}
+    >
+      <BootstrapAlert
+        variant={variant}
+        onClose={onClose}
+        dismissible
+        style={{
+          backgroundColor: `rgba(${parseInt(
+            colors[variant].slice(1, 3),
+            16
+          )}, ${parseInt(colors[variant].slice(3, 5), 16)}, ${parseInt(
+            colors[variant].slice(5, 7),
+            16
+          )}, 0.9)`,
+          color: "white",
+          border: "none",
+          borderRadius: "8px",
+          boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <div style={{ flex: 1 }}>
+          <strong>{variant === "success" ? "Success!" : "Oops!"}</strong>{" "}
+          {message}
+        </div>
+      </BootstrapAlert>
+    </div>
+  );
+};
 
 function RequestForm() {
   const [formData, setFormData] = useState({
@@ -23,6 +72,16 @@ function RequestForm() {
   const [otp, setOtp] = useState("");
   const [verified, setVerified] = useState(false);
   const [loadingOtp, setLoadingOtp] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertVariant, setAlertVariant] = useState("success");
+  const [alertMessage, setAlertMessage] = useState("");
+
+  const showCustomAlert = (variant, message) => {
+    setAlertVariant(variant);
+    setAlertMessage(message);
+    setShowAlert(true);
+    setTimeout(() => setShowAlert(false), 5000);
+  };
 
   const handleChange = (e) => {
     setFormData((prev) => ({
@@ -33,22 +92,19 @@ function RequestForm() {
 
   const sendOtp = async () => {
     if (!formData.email) {
-      alert("Please enter your email first.");
+      showCustomAlert("danger", "Please enter your email first.");
       return;
     }
 
     try {
       setLoadingOtp(true);
-      await axios.post(
-        "https://portfolio-backend-njcj.onrender.com/api/otp/send",
-        {
-          email: formData.email,
-        }
-      );
+      await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/otp/send`, {
+        email: formData.email,
+      });
       setOtpSent(true);
-      alert("OTP sent to your email.");
+      showCustomAlert("success", "OTP sent to your email.");
     } catch (err) {
-      alert("Failed to send OTP. Try again.");
+      showCustomAlert("danger", "Failed to send OTP. Please try again later.");
       console.error(err);
     } finally {
       setLoadingOtp(false);
@@ -56,9 +112,14 @@ function RequestForm() {
   };
 
   const verifyOtp = async () => {
+    if (!otp) {
+      showCustomAlert("danger", "Please enter the OTP.");
+      return;
+    }
+
     try {
       const res = await axios.post(
-        "https://portfolio-backend-njcj.onrender.com/api/otp/verify",
+        `${process.env.REACT_APP_API_BASE_URL}/api/otp/verify`,
         {
           email: formData.email,
           otp,
@@ -67,10 +128,10 @@ function RequestForm() {
 
       if (res.status === 200) {
         setVerified(true);
-        alert("Email verified successfully!");
+        showCustomAlert("success", "Email verified successfully!");
       }
     } catch (err) {
-      alert("Invalid or expired OTP. Please try again.");
+      showCustomAlert("danger", "Invalid or expired OTP. Please try again.");
       console.error(err);
     }
   };
@@ -78,16 +139,16 @@ function RequestForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!verified) {
-      alert("Please verify your email first.");
+      showCustomAlert("danger", "Please verify your email first.");
       return;
     }
 
     try {
       await axios.post(
-        "https://portfolio-backend-njcj.onrender.com/api/requests/create",
+        `${process.env.REACT_APP_API_BASE_URL}/api/requests/create`,
         formData
       );
-      alert("Request submitted successfully!");
+      showCustomAlert("success", "Request submitted successfully!");
 
       // Reset form
       setFormData({
@@ -101,7 +162,7 @@ function RequestForm() {
       setOtpSent(false);
       setVerified(false);
     } catch (err) {
-      alert("Error submitting request.");
+      showCustomAlert("danger", "Error submitting request. Please try again.");
       console.error(err);
     }
   };
@@ -111,6 +172,15 @@ function RequestForm() {
       className="request-form-section"
       style={{ maxWidth: "900px", margin: "0 auto" }}
     >
+      {/* Custom Alert */}
+      {showAlert && (
+        <CustomAlert
+          variant={alertVariant}
+          message={alertMessage}
+          onClose={() => setShowAlert(false)}
+        />
+      )}
+
       <div
         className="form-header"
         style={{ textAlign: "center", marginBottom: "2rem" }}
@@ -134,6 +204,7 @@ function RequestForm() {
         onSubmit={handleSubmit}
         style={{ padding: "2rem", borderRadius: "12px" }}
       >
+        {/* Rest of your form remains the same */}
         <Row>
           <Col md={6}>
             <Form.Group className="mb-4" controlId="formName">
@@ -264,7 +335,7 @@ function RequestForm() {
         )}
 
         {verified && (
-          <Alert
+          <BootstrapAlert
             variant="success"
             style={{ background: "rgba(40, 167, 69, 0.2)", color: "#28a745" }}
           >
@@ -272,7 +343,7 @@ function RequestForm() {
               ✓
             </span>
             Email successfully verified!
-          </Alert>
+          </BootstrapAlert>
         )}
 
         <Row>

@@ -33,7 +33,7 @@ const LoginPage = () => {
     if (dragProgress >= 80) {
       try {
         const response = await axios.post(
-          "https://portfolio-backend-njcj.onrender.com/api/admin/login",
+          `${process.env.REACT_APP_API_BASE_URL}/api/admin/login`,
           {
             email,
             password,
