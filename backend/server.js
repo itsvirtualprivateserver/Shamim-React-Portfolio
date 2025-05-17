@@ -53,7 +53,7 @@ app.use((err, req, res, next) => {
 });
 
 // Schedule keep-alive pings every 14 minutes (Render sleeps after 15 mins)
-cron.schedule("*/5 * * * *", async () => {
+cron.schedule("*/14 * * * *", async () => {
   try {
     const response = await axios.get(`${BASE_URL}/keep-alive`);
     console.log("Keep-alive ping successful:", response.data);

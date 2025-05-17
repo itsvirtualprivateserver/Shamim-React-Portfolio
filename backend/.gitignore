@@ -10,7 +10,6 @@
 
 # production
 /build
-.package-lock.json
 # misc
 .DS_Store
 .env
@@ -27,3 +26,5 @@ yarn-error.log*
 
 Server/node_modules
 Server/config.js
+
+package-lock.json
