@@ -9,7 +9,8 @@ const axios = require("axios");
 const requestRoutes = require("./routes/RequestRoutes");
 const otpRoutes = require("./routes/OtpRoutes");
 const adminRoutes = require("./routes/adminRoutes");
-const BASE_URL = process.env.BASE_URL || "http://localhost:5000";
+const BASE_URL =
+  process.env.BASE_URL || "https://portfolio-backend-njcj.onrender.com";
 dotenv.config();
 connectDB();
 
