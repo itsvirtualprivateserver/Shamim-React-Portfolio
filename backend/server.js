@@ -53,18 +53,18 @@ app.use((err, req, res, next) => {
   res.status(500).json({ message: "Something went wrong!" });
 });
 
-// Schedule keep-alive pings every 14 minutes (Render sleeps after 15 mins)
-cron.schedule("*/14 * * * *", async () => {
-  try {
-    const response = await axios.get(`${BASE_URL}/keep-alive`);
-    console.log("Keep-alive ping successful:", response.data);
-  } catch (error) {
-    console.error("Keep-alive ping failed:", error.message);
-    if (error.code === "ECONNREFUSED") {
-      console.log("Server may be down - check Render dashboard");
-    }
-  }
-});
+// // Schedule keep-alive pings every 14 minutes (Render sleeps after 15 mins)
+// cron.schedule("*/14 * * * *", async () => {
+//   try {
+//     const response = await axios.get(`${BASE_URL}/keep-alive`);
+//     console.log("Keep-alive ping successful:", response.data);
+//   } catch (error) {
+//     console.error("Keep-alive ping failed:", error.message);
+//     if (error.code === "ECONNREFUSED") {
+//       console.log("Server may be down - check Render dashboard");
+//     }
+//   }
+// });
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
