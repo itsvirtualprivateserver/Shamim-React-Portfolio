@@ -20,9 +20,20 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import LoginPage from "./components/Admin/LoginPage";
 import Dashboard from "./components/Admin/Dashboard";
 import ProtectedRoute from "./components/Admin/ProtectedRoute";
+import Lenis from "lenis";
 function Layout({ children }) {
   const location = useLocation();
   const isAdminRoute = location.pathname.startsWith("/admin");
+
+  // Initialize Lenis
+  const lenis = new Lenis({
+    autoRaf: true,
+  });
+
+  // Listen for the scroll event and log the event data
+  lenis.on("scroll", (e) => {
+    // console.log(e);
+  });
 
   return (
     <>
