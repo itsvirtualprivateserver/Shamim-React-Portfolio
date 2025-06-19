@@ -4,7 +4,7 @@ const nodemailer = require("nodemailer");
 const otpStore = {}; // { email: { otp, expiresAt } }
 
 const sendOtp = async (req, res) => {
-  const { email } = req.body;
+  const { email } = req.sbody;
 
   if (!email) {
     return res.status(400).json({ message: "Email is required" });

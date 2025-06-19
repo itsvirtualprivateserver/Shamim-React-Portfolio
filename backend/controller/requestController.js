@@ -1,16 +1,19 @@
 const nodemailer = require("nodemailer");
 const Request = require("../models/Request");
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.MY_EMAIL,
-    pass: process.env.MY_EMAIL_PASSWORD,
-  },
-});
+
 
 const createRequest = async (req, res) => {
   try {
+    const transporter = nodemailer.createTransport({
+      service: "Gmail",
+      auth: {
+        user: process.env.MY_EMAIL,
+        pass: process.env.MY_EMAIL_PASSWORD,
+      },
+    });
+    
     const { name, email, phone, subject, message } = req.body;
+    
     const newRequest = await Request.create({
       name,
       email,
@@ -20,7 +23,7 @@ const createRequest = async (req, res) => {
     });
 
     const mailOptions = {
-      from: `"Shamim Imran" <${process.env.MY_EMAIL}>`,
+      from: `"Shamim Imran" ${process.env.MY_EMAIL}`,
       to: email,
       subject: "✨ Thank you for reaching out!",
       html: `
@@ -67,9 +70,11 @@ const createRequest = async (req, res) => {
   `,
     };
     // Send the email
+ 
     await transporter.sendMail(mailOptions);
+      
 
-    res.status(201).json(newRequest);
+   return  res.status(201).json(newRequest);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
