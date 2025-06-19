@@ -13,7 +13,7 @@ connectDB();
 const app = express();
 
 const corsOptions = {
-  origin: process.env.FRONTEND_URL || "http://shamim.devtool.store",
+  origin: process.env.FRONTEND_URL || "https://shamim.devtool.store",
   credentials: true,
 };
 app.use(cors(corsOptions));
